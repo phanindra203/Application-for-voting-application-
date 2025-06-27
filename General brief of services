@@ -1,0 +1,47 @@
+Successfully built and deployed CI pipelines from scratch for a microservices-based application using Azure DevOps, Docker, and Azure cloud resources.
+This hands-on project helped me improve my skills in pipeline automation, troubleshooting failed builds, and managing containerized applications in the cloud. 👏 
+Project Update : Building CI Pipelines for Micro services on Azure DevOps
+📍 Overview:
+I recently built a complete Continuous Integration (CI) pipeline system from scratch for a cloud-based application consisting of three independent microservices:
+voting-service (written in .NET)
+result-service (written in .NET)
+worker-service (written in Python)
+This project was executed using Azure DevOps, Docker, and Azure infrastructure to simulate real-world DevOps practices.
+
+ Tech Stack & Tools:
+Azure DevOps – Repositories, Pipelines, Agent Pools
+Docker – Containerized each microservice
+Azure Container Registry (ACR) – Stored built Docker images
+Azure Linux VM – Used as a self-hosted build agent
+Languages – .NET, Python, YAML, JSON
+
+What I Did:
+Project Setup
+Created and containerized each microservice using Docker.
+Configured a Linux VM on Azure to run as a self-hosted agent (agent v4.258.1).
+CI Pipeline Creation
+Wrote YAML pipelines with separate build and push stages for all services.
+Integrated Azure Container Registry for secure image storage.
+
+Troubleshooting & Debugging
+Spent time analyzing and resolving build pipeline failures, such as Docker build errors and configuration mismatches.
+Refined the pipeline setup to ensure stability and successful builds across all services.
+
+ Outcome:
+Built and pushed Docker images for all services via working CI pipelines.
+Successfully managed Azure resources: VM, ACR, and agent pools.
+Strengthened my troubleshooting skills by handling pipeline errors end-to-end.
+
+Visuals Attached:
+Azure DevOps pipeline dashboards
+Terminal output showing agent setup and job execution
+YAML pipeline configuration
+Azure portal dashboard and container registry overview
+
+🌟 Key Skills Demonstrated:
+CI/CD pipeline creation (Azure DevOps)
+Docker image build & push workflows
+Self-hosted agent configuration
+Debugging failed builds & logs
+Azure VM and container registry management
+Multi-language integration (.NET, Python, JSON)
