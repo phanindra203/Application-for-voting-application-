@@ -1,0 +1,49 @@
+trigger:
+  paths:
+    include:
+    - result/*
+resources:
+  repositories:
+  - repository: self
+variables:
+- name: dockerRegistryServiceConnection
+  value: '25d8615a-a83e-485c-88c7-c2ad6a4b9e51'
+- name: imageRepository
+  value: 'resultapp'
+- name: containerRegistry
+  value: 'phanindraazurecicd.azurecr.io'
+- name: dockerfilePath
+  value: '$(Build.SourcesDirectory)/result/Dockerfile'
+- name: tag
+  value: '$(Build.BuildId)'
+pool:
+  name: 'azureagent'
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: Build
+    displayName: Build
+    steps:
+    - task: Docker@2
+      displayName: build the image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'build'
+        Dockerfile: 'result/Dockerfile'
+        tags: '$(tag)'
+- stage: push
+  displayName: push
+  jobs:
+  - job: push
+    displayName: push
+    steps:
+    - task: Docker@2
+      displayName: push the image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'push'
+        tags: '$(tag)'
+

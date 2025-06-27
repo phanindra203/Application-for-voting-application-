@@ -1,0 +1,49 @@
+trigger:
+  paths:
+    include:
+    - vote/*
+resources:
+  repositories:
+  - repository: self
+variables:
+- name: dockerRegistryServiceConnection
+  value: '3968f904-8b2c-42e7-8890-7ea5d3da7c26'
+- name: imageRepository
+  value: 'votingapp'
+- name: containerRegistry
+  value: 'phanindraazurecicd.azurecr.io'
+- name: dockerfilePath
+  value: '$(Build.SourcesDirectory)/result/Dockerfile'
+- name: tag
+  value: '$(Build.BuildId)'
+pool:
+  name: 'azureagent'
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: Build
+    displayName: Build
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'build'
+        Dockerfile: 'vote/Dockerfile'
+        tags: '$(tag)'
+- stage: push
+  displayName: push
+  jobs:
+  - job: push
+    displayName: push
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'push'
+        tags: '$(tag)'
+
